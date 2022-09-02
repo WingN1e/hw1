@@ -10,15 +10,24 @@ split.h.  **Do NOT add main() to this file**.  When you submit
 the function below should be the only one in this file.
 */
 
-#include "split.h"
+#include "split.h" 
+
+using namespace std;
 
 /* Add a prototype for a helper function here if you need */
 
 void split(Node*& in, Node*& odds, Node*& evens)
 {
   /* Add code here */
-// WRITE YOUR CODE HERE
 
+  if (in->next) {
+    // recursively go through all the items until you reach the end 
+    // of the list, switching odd and even every time
+    split(in->next, evens, odds); 
+  }
+  // take in and set it as the first link in odds
+  in->next = odds; 
+  odds = in;
 }
 
 /* If you needed a helper function, write it here */

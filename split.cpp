@@ -11,6 +11,7 @@ the function below should be the only one in this file.
 */
 
 #include "split.h" 
+#include <iostream>
 
 using namespace std;
 
@@ -20,14 +21,28 @@ void split(Node*& in, Node*& odds, Node*& evens)
 {
   /* Add code here */
 
-  if (in->next) {
-    // recursively go through all the items until you reach the end 
-    // of the list, switching odd and even every time
-    split(in->next, evens, odds); 
+  if (in == NULL) 
+  {
+    odds = NULL;
+    evens = NULL;
+    in = NULL;
+    return;
   }
-  // take in and set it as the first link in odds
-  in->next = odds; 
-  odds = in;
+  else 
+  {
+    //Checks if the input value is even or odd
+    if (in->value % 2 == 0) {
+      evens = in;
+      in = in -> next;
+      split (in, odds, evens->next);
+    }
+    else 
+    {
+      odds = in;
+      in = in->next;
+      split (in, odds->next, evens);
+    }
+  }
 }
 
 /* If you needed a helper function, write it here */

@@ -11,6 +11,7 @@ void printList(Node*& list) {
 }
 
 int main () {
+  //Uses a for loop to create a linked list going from 1 to 10
   Node* linked_list = new Node(10, NULL); 
   for (int i = 9; i > 0; i--) {
     Node* temp = new Node(i, linked_list); 
@@ -19,10 +20,13 @@ int main () {
   Node* odds = NULL;
   Node* evens = NULL;
   split(linked_list, odds, evens); 
+  //prints the list for the odd numbers
   printList(odds); 
   cout << endl;
+  //prints the list for the even numbers
   printList(evens);
  
+  //deletes the memory for even and odd
   Node* temp = evens;
   Node* temp2 = odds;
   while (evens->next && odds->next != NULL) {
